@@ -1,188 +1,1566 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Tromso Media — creator-led marketing for modern telemedicine and wellness brands." />
-  <title>Tromso Media — Creator-Led Growth</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tromso Media - GLP-1 Care</title>
+<meta name="description" content="Personalized GLP-1 care online from Tromso Media.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS & RESET
+═══════════════════════════════════════════════════ */
+:root{
+  --green:#2f7db0;
+  --deep:#0f4c75;
+  --black:#16232f;
+  --muted:#5a6772;
+  --cream:#eef3f7;
+  --pale:#e8f1f8;
+  --gold:#d4a24c;
+  --line:#dde4ea;
+  --radius:20px;
+  --font:'Red Hat Text',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Red Hat Text',sans-serif;color:var(--black);background:#fff;font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%;height:auto}
+
+/* ═══════════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════════ */
+.wrap{width:min(1240px,94vw);margin:0 auto}
+.section{padding:80px 0}
+
+/* ═══════════════════════════════════════════════════
+   TYPOGRAPHY SYSTEM  — consistent across all sections
+   h1: 48-56px bold   h2: 32-42px bold   h3: 18-22px 700
+   body: 15px 500     small: 13px        label/eyebrow: 11px 900 uppercase
+═══════════════════════════════════════════════════ */
+h1,h2,h3{font-family:'Red Hat Text',sans-serif;line-height:1.1;letter-spacing:-.04em;color:var(--black)}
+h1{font-size:clamp(36px,4.2vw,54px);font-weight:800}
+h2{font-size:clamp(28px,3.2vw,44px);font-weight:700}
+h3{font-size:clamp(18px,1.7vw,22px);font-weight:700}
+p{font-size:17px;line-height:1.75;color:var(--muted)}
+.eyebrow{display:block;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--deep);margin-bottom:10px}
+
+/* ═══════════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  border:0;border-radius:999px;
+  background:var(--black);color:#fff;
+  padding:13px 28px;font-size:13px;font-weight:800;
+  letter-spacing:.03em;text-transform:uppercase;
+  cursor:pointer;white-space:nowrap;
+  transition:background .15s,transform .15s,box-shadow .15s;
+  font-family:'Red Hat Text',sans-serif;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.btn-green{background:var(--green)}.btn-green:hover{background:#258a6b}
+.btn-outline{background:transparent;color:var(--deep);border:2px solid var(--deep);box-shadow:none}
+.btn-outline:hover{background:var(--pale)}
+.btn-gold{background:linear-gradient(90deg,#efad29,#e9d330);color:#1a1000}
+
+/* ═══════════════════════════════════════════════════
+   TOPBAR
+═══════════════════════════════════════════════════ */
+.topbar{
+  height:38px;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--deep);
+  background:linear-gradient(90deg,#dcecf5,#e6f2fa,#dcecf5);
+  position:relative;border-bottom:1px solid #cfe1ee;
+}
+.topbar-x{position:absolute;right:14px;top:50%;transform:translateY(-50%);border:0;background:0;font-size:18px;cursor:pointer;color:var(--muted);line-height:1;padding:4px}
+
+/* ═══════════════════════════════════════════════════
+   HEADER / NAV
+═══════════════════════════════════════════════════ */
+.header{
+  height:60px;background:#fff;
+  border-bottom:1px solid #eee;
+  display:flex;align-items:center;
+  position:sticky;top:0;z-index:100;
+}
+.nav{width:min(1240px,94vw);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo-img{height:38px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{font-size:14px;font-weight:600;color:#3d4a44;opacity:.75;transition:opacity .15s,color .15s}
+.nav-links a:hover{opacity:1;color:var(--deep)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-login{font-size:13px;font-weight:700;color:var(--deep)}
+.hamb{border:0;background:0;cursor:pointer;font-size:22px;color:var(--black);padding:6px;line-height:1;display:none}
+@media(max-width:900px){.hamb{display:block}}
+@media(max-width:900px){.nav-links{display:none}}
+@media(max-width:520px){.nav-login{display:none}}
+
+/* ═══════════════════════════════════════════════════
+   HERO  — TrimRx-style rounded card
+═══════════════════════════════════════════════════ */
+.hero{
+  background:#fff;
+  padding:20px 20px 0;
+}
+.hero-card{
+  /* warm gradient matching TrimRx energy but in Tromso greens */
+  background:linear-gradient(145deg,#c7dff0 0%,#d6ebf5 30%,#e2f1f8 55%,#eef7fb 80%,#f8fcfe 100%);
+  border-radius:28px;
+  overflow:hidden;
+  padding:52px 60px 0;
+  position:relative;
+  /* subtle circle decoration like trimrx */
+}
+.hero-card::before{
+  content:'';position:absolute;
+  right:5%;top:50%;transform:translateY(-50%);
+  width:520px;height:520px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.55);
+  pointer-events:none;z-index:1;
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  align-items:center;
+  min-height:520px;
+  position:relative;z-index:2;
+}
+.hero-copy{padding-bottom:56px;padding-top:20px}
+.hero-stars{
+  margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-stars .star-row{display:flex;align-items:center;gap:2px}
+.hero-stars .star-row span{color:#d4a946;font-size:20px;line-height:1}
+.hero-stars .star-half{position:relative;display:inline-block;color:#e0e0e0;font-size:20px;line-height:1}
+.hero-stars .star-half::before{content:'★';position:absolute;left:0;top:0;width:50%;overflow:hidden;color:#d4a946}
+.hero-stars .star-label{font-size:13px;font-weight:600;color:#4a5a50;letter-spacing:0}
+.hero h1{
+  font-size:50px;
+  font-weight:900;line-height:1.05;
+  letter-spacing:-.04em;
+  margin:0 0 16px;
+  color:#111a14;
+  max-width:600px;
+}
+.hero-price{font-size:15px;font-weight:600;color:#4a5a50;margin-bottom:20px}
+.hero-price strong{font-size:28px;font-weight:800;color:#111a14}
+/* TrimRx-style bullets: small icon + text */
+.hero-bullets{display:flex;flex-direction:column;gap:10px;margin-bottom:26px;font-size:15px;color:#2c3a30}
+.hero-bullets li{
+  list-style:none;display:flex;align-items:center;gap:10px;
+}
+.hero-bullets li .hb-icon{
+  width:22px;height:22px;border-radius:50%;
+  border:1.5px solid rgba(15,76,117,.35);
+  display:inline-flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:10px;color:var(--deep);
+}
+.hero-cta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+/* TrimRx bottom trust row: 3 items with ✓, no pills */
+.hero-trust{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hero-trust span{
+  font-size:13px;font-weight:700;color:#3d4a3e;
+  display:flex;align-items:center;gap:5px;
+}
+.hero-trust span::before{content:'✓';color:var(--deep);font-weight:900}
+/* HIPAA / Made in USA pill badges */
+.trust-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 12px;border-radius:999px;
+  border:1.5px solid rgba(15,76,117,.22);
+  background:rgba(15,76,117,.06);
+  font-size:12px;font-weight:700;color:var(--deep);
+}
+/* Right side: person + large side-by-side bottles — vertically centered */
+.hero-img{
+  display:flex;align-items:center;justify-content:center;
+  position:relative;align-self:stretch;
+  height:100%;
+}
+.hero-img img.hero-person{
+  max-height:520px;width:auto;
+  object-fit:contain;position:relative;z-index:2;
+  display:block;
+}
+/* Two bottles side-by-side, large, bottom-right of image area */
+.hero-bottles{
+  position:absolute;
+  right:-10px;bottom:30px;
+  display:flex;flex-direction:row;align-items:flex-end;gap:10px;
+  z-index:3;
+}
+.hero-bottles img{
+  width:120px;height:auto;
+  filter:drop-shadow(0 16px 24px rgba(0,0,0,.22));
+}
+.hero-bottles img:first-child{
+  width:130px;         /* slightly larger front bottle */
+  margin-bottom:0;
+}
+@media(max-width:960px){
+  .hero-card{padding:40px 36px 0}
+  .hero h1{font-size:clamp(30px,5.5vw,46px);max-width:100%}
+  .hero-bottles img{width:88px}
+  .hero-bottles img:first-child{width:96px}
+  .hero-card::before{width:380px;height:380px}
+}
+@media(max-width:760px){
+  .hero{padding:14px 14px 0}
+  .hero-card{padding:32px 26px 0;border-radius:22px}
+  .hero-inner{grid-template-columns:1fr;min-height:auto;gap:20px;align-items:flex-start}
+  .hero-copy{padding-bottom:0;padding-top:0}
+  .hero h1{font-size:clamp(28px,7vw,38px)}
+  .hero-img{max-height:260px;overflow:hidden;align-self:auto}
+  .hero-img img.hero-person{max-height:260px}
+  .hero-bottles{right:-4px;bottom:8px}
+  .hero-bottles img{width:68px}
+  .hero-bottles img:first-child{width:74px}
+  .hero-card::before{display:none}
+}
+@media(max-width:480px){
+  .hero{padding:10px 10px 0}
+  .hero-card{padding:26px 18px 0;border-radius:16px}
+  .hero-trust{gap:12px}
+  .hero-img{display:none}
+}
+
+/* ═══════════════════════════════════════════════════
+   LOGOS — TrimRx "We've been featured all over"
+═══════════════════════════════════════════════════ */
+.logos{overflow:hidden;background:#fff;padding:32px 0 28px;text-align:center}
+.logos-label{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#aaa;margin-bottom:22px}
+.logo-track{display:flex;gap:56px;width:max-content;padding:0;animation:logoScroll 30s linear infinite}
+.logo-track img{height:28px;width:auto;object-fit:contain;filter:grayscale(1) opacity(.55)}
+@keyframes logoScroll{to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════════════════
+   PROOF  — exact TrimRx screenshot match
+═══════════════════════════════════════════════════ */
+.proof{
+  position:relative;
+  text-align:center;
+  padding:72px 0 80px;
+  overflow:hidden;
+  background:#eef3f8;  /* very light grey-green like screenshot */
+}
+.proof-patients{
+  font-size:12px;font-weight:700;color:#888;
+  margin-bottom:10px;text-transform:uppercase;letter-spacing:.12em;
+}
+/* spaced individual stars like screenshot */
+.proof-stars{
+  display:flex;align-items:center;justify-content:center;gap:3px;
+  margin-bottom:14px;
+}
+.proof-stars span{color:#d4a946;font-size:44px;line-height:1}
+.proof h2{
+  font-size:clamp(24px,3vw,38px);font-weight:700;
+  max-width:600px;margin:0 auto 10px;letter-spacing:-.04em;color:#111;
+}
+.proof h2 .green{color:var(--green)}
+/* verified badge — plain text, no background */
+.proof-verified{
+  display:inline-flex;align-items:center;gap:7px;
+  background:transparent;color:#444;
+  border-radius:999px;padding:0;
+  font-size:14px;font-weight:700;
+  margin-bottom:0;
+}
+.proof-verified::before{
+  content:'✓';display:inline-flex;align-items:center;justify-content:center;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--deep);color:#fff;font-size:11px;font-weight:900;
+}
+/* upright bottle — slightly smaller */
+.bottle{
+  width:280px;margin:36px auto 0;
+  transform:none;
+  filter:drop-shadow(0 20px 36px rgba(0,0,0,.14));
+  animation:bottleFloat 5s ease-in-out infinite;
+  position:relative;z-index:2;
+  display:block;
+}
+@keyframes bottleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.proof-hsa{width:150px;margin:20px auto 0;opacity:.75}
+/* scrolling trust marquee below bottle */
+.proof-marquee-wrap{
+  overflow:hidden;border-top:1px solid rgba(0,0,0,.08);border-bottom:1px solid rgba(0,0,0,.08);
+  margin:32px 0 0;padding:12px 0;background:rgba(255,255,255,.35);
+}
+.proof-marquee{display:flex;gap:48px;width:max-content;animation:proofScroll 22s linear infinite}
+.proof-marquee span{font-size:12px;font-weight:700;color:#555;white-space:nowrap;display:flex;align-items:center;gap:6px}
+@keyframes proofScroll{to{transform:translateX(-50%)}}
+/* bottom CTA area */
+.proof-bottom{margin-top:36px}
+.proof-ctas{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.proof-trust-row{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+.proof-trust-row span{font-size:12px;font-weight:700;color:#4a5a50;display:flex;align-items:center;gap:5px}
+.proof-trust-row span::before{content:'✓';color:var(--deep)}
+/* Trustpilot badge */
+.proof-tp{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px}
+.proof-tp-stars{display:flex;gap:2px}
+.proof-tp-stars span{width:20px;height:20px;background:#00b67a;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:900}
+.proof-tp-label{font-size:13px;font-weight:700;color:#111}
+.proof-tp-count{font-size:12px;color:#888}
+/* quote clouds — bigger, not italic, pushed inward */
+.qc{
+  position:absolute;font-size:20px;font-weight:600;line-height:1.4;
+  max-width:240px;color:rgba(22,35,47,.36);font-style:normal;
+  text-align:center;
+}
+.qc-attr{display:flex;font-size:12px;font-style:normal;font-weight:700;
+  color:rgba(22,35,47,.26);margin-top:6px;align-items:center;justify-content:center;gap:4px}
+.qc-attr::before{
+  content:'✓';width:14px;height:14px;border-radius:50%;
+  background:rgba(47,125,176,.2);color:var(--deep);
+  display:inline-flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0;
+}
+.q1{left:16%;top:20%}.q2{right:16%;top:24%}
+.q3{left:13%;top:43%}.q4{right:13%;top:41%}
+.q5{left:16%;top:64%}.q6{right:16%;top:65%}
+@media(max-width:1000px){.proof{padding:56px 0 64px}.bottle{width:220px}.qc{display:none}}
+@media(max-width:640px){.proof{padding:48px 0 56px}.bottle{width:180px}.proof-marquee-wrap{display:none}}
+
+/* ═══════════════════════════════════════════════════
+   REAL CUSTOMERS  — matches trimrx exactly
+   Cream bg, huge bold type, rotating bottles L+R
+═══════════════════════════════════════════════════ */
+.realcust{
+  background:var(--cream);
+  padding:80px 0 64px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.realcust-inner{position:relative;z-index:2}
+.realcust h2{
+  font-size:clamp(32px,5.2vw,60px);
+  font-weight:900;
+  line-height:1.0;
+  letter-spacing:-.05em;
+  color:#1a2018;
+  max-width:820px;
+  margin:0 auto 6px;
+}
+.realcust h2 em{font-style:italic;font-weight:900}
+.realcust-sub{font-size:16px;color:#5a6456;max-width:760px;margin:16px auto 0;line-height:1.65}
+.realcust-watch{font-size:20px;font-weight:600;color:#1a2018;max-width:560px;margin:28px auto 0;line-height:1.4}
+.realcust-arrow{
+  width:90px;height:auto;margin:20px auto 0;display:block;
+  filter:opacity(.7);
+}
+
+/* floating/rotating bottles on left and right — bigger */
+.rc-bottle{
+  position:absolute;top:42%;
+  width:270px;
+  filter:drop-shadow(0 20px 32px rgba(0,0,0,.2));
+  animation:rcBottle 6s ease-in-out infinite;
+  transform-origin:center center;
+}
+.rc-bottle-l{left:40px;transform:translateY(-50%) rotate(-25deg);animation-name:rcBottleL}
+.rc-bottle-r{right:40px;transform:translateY(-50%) rotate(25deg);animation-name:rcBottleR}
+@keyframes rcBottleL{
+  0%,100%{transform:translateY(-50%) rotate(-25deg) translateY(0)}
+  50%{transform:translateY(-50%) rotate(-20deg) translateY(-20px)}
+}
+@keyframes rcBottleR{
+  0%,100%{transform:translateY(-50%) rotate(25deg) translateY(0)}
+  50%{transform:translateY(-50%) rotate(20deg) translateY(-20px)}
+}
+@media(max-width:1200px){.rc-bottle{width:200px;left:10px}.rc-bottle-r{right:10px}}
+@media(max-width:1000px){.rc-bottle{width:150px;left:4px}.rc-bottle-r{right:4px}}
+@media(max-width:700px){.rc-bottle{display:none}}
+
+/* ── VIMEO 3-COLUMN GRID ────────────────────────── */
+.vimeo-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  max-width:1100px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.vimeo-card{
+  border-radius:18px;overflow:hidden;background:#111;
+  box-shadow:0 8px 32px rgba(0,0,0,.18);
+}
+@media(max-width:700px){
+  .vimeo-grid{grid-template-columns:1fr;max-width:340px}
+}
+
+/* ═══════════════════════════════════════════════════
+   READY STRIP
+═══════════════════════════════════════════════════ */
+.ready-strip{background:#fff;padding:36px 0;text-align:center;border-top:1px solid #eee;border-bottom:1px solid #eee}
+.ready-strip h2{font-size:clamp(20px,2.4vw,32px);margin:0 auto 18px;max-width:480px}
+.ready-ctas{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.ready-badges{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:14px;flex-wrap:wrap}
+.rb{font-size:12px;font-weight:700;color:#404944;display:flex;align-items:center;gap:5px}
+.rb-stars{color:#00b67a;font-size:11px}
+
+/* ═══════════════════════════════════════════════════
+   WHY WE'RE BETTER — TrimRx layout
+═══════════════════════════════════════════════════ */
+.why{background:#fff;padding:56px 0}
+.why-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;
+  align-items:center;
+}
+.why-copy h2{
+  text-align:left;margin-bottom:10px;
+  font-size:clamp(32px,4vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.04em;
+}
+.why-sub{font-size:15px;color:var(--muted);margin-bottom:20px;max-width:440px}
+/* timeline steps — tighter */
+.why-steps{display:flex;flex-direction:column;gap:0}
+.why-step{
+  display:flex;flex-direction:column;gap:3px;
+  padding:12px 0;
+  border-bottom:1px solid #e8e4de;
+}
+.why-step:last-child{border-bottom:none}
+.why-step-label{
+  font-size:13px;font-weight:700;color:var(--green);
+  text-transform:none;letter-spacing:0;
+}
+.why-step-text{
+  font-size:16px;font-weight:800;color:var(--black);
+  display:flex;align-items:center;gap:8px;
+}
+.why-step-text::before{
+  content:'▶';font-size:11px;color:var(--black);flex-shrink:0;
+}
+/* Right side: bare image, no card */
+.why-visual{
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.why-phone-card{
+  width:100%;
+  background:transparent;
+  display:flex;align-items:center;justify-content:center;padding:0;
+}
+.why-phone-card img{
+  max-width:480px;width:100%;
+  object-fit:contain;
+  display:block;
+}
+@media(max-width:860px){
+  .why-inner{grid-template-columns:1fr;gap:28px}
+  .why-copy h2{text-align:center}
+  .why-sub{text-align:center;margin-left:auto;margin-right:auto}
+  .why-phone-card img{max-width:320px}
+}
+@media(max-width:520px){
+  .why-phone-card img{max-width:240px}
+}
+
+/* ═══════════════════════════════════════════════════
+   HOW IT WORKS  (new section)
+═══════════════════════════════════════════════════ */
+.hiw{background:#f0f6fb;padding:80px 0}
+.hiw .section-head{text-align:center;margin-bottom:48px}
+.hiw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.hiw-card{
+  background:#fff;border-radius:20px;padding:32px 26px;text-align:center;
+  border:1px solid #d7e6ee;box-shadow:0 2px 16px rgba(15,76,117,.06)
+}
+.hiw-n{
+  width:46px;height:46px;border-radius:50%;background:var(--deep);
+  color:#fff;font-size:18px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 16px
+}
+.hiw-card h3{margin-bottom:10px}
+.hiw-card p{font-size:15px;color:var(--muted);line-height:1.65}
+@media(max-width:680px){.hiw-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}}
+
+/* ═══════════════════════════════════════════════════
+   WEIGHT CALCULATOR  (new section)
+═══════════════════════════════════════════════════ */
+.calc-sec{background:#f9f7f4;padding:80px 0}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.calc-copy h2{text-align:left;margin-bottom:12px}
+.calc-copy p{margin-bottom:24px}
+.calc-box{background:#fff;border-radius:24px;padding:36px 40px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.calc-label{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.calc-big{font-size:48px;font-weight:800;letter-spacing:-.05em;color:var(--black);line-height:1;font-variant-numeric:tabular-nums}
+.calc-big small{font-size:20px;font-weight:600;color:var(--muted)}
+.wrange{
+  width:100%;-webkit-appearance:none;appearance:none;
+  height:3px;border-radius:99px;background:#d4c2ab;
+  outline:none;cursor:pointer;margin:16px 0 28px;display:block;
+}
+.wrange::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;border:4px solid #c9a85f;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.1);cursor:pointer}
+.wrange::-moz-range-thumb{width:20px;height:20px;border-radius:50%;border:4px solid #c9a85f;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.calc-result-label{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.calc-result-big{font-size:42px;font-weight:800;letter-spacing:-.05em;color:var(--green);line-height:1;font-variant-numeric:tabular-nums}
+.calc-result-big small{font-size:18px;font-weight:600}
+.calc-note{font-size:11px;color:#bbb;margin-top:6px}
+@media(max-width:760px){.calc-grid{grid-template-columns:1fr;gap:28px}.calc-copy h2,.calc-copy p{text-align:center}.calc-box{padding:28px 24px}}
+
+/* ═══════════════════════════════════════════════════
+   PRICING CARDS  (new section)
+═══════════════════════════════════════════════════ */
+.pricing{background:#fff;padding:80px 0}
+.section-head{text-align:center;margin-bottom:48px}
+.section-head h2{margin-bottom:12px}
+.section-head p{max-width:620px;margin:0 auto}
+.pc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.pc{
+  background:#fafaf8;border-radius:18px;padding:22px 20px;
+  border:1.5px solid #e8e4dc;
+  display:flex;flex-direction:column;gap:12px;
+  position:relative;transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.pc:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(15,76,117,.1)}
+.pc.pop{border-color:var(--deep)}
+.pc-badge{
+  position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  background:var(--deep);color:#fff;font-size:10px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;
+  border-radius:999px;white-space:nowrap;
+}
+.pc-img{height:130px;background:#e9f2f8;border-radius:14px;display:flex;align-items:center;justify-content:center;padding:12px}
+.pc-img.b{background:#e2eef7}
+.pc-img img{max-height:110px;object-fit:contain}
+.pc h3{font-size:17px;margin:0;letter-spacing:-.03em}
+.pc-price{font-size:24px;font-weight:800;color:var(--green);line-height:1}
+.pc-price span{font-size:13px;font-weight:500;color:var(--muted)}
+.pc-feats{list-style:none;display:flex;flex-direction:column;gap:5px}
+.pc-feats li{font-size:13px;font-weight:600;color:#4a5450;display:flex;align-items:center;gap:6px}
+.pc-feats li::before{content:'✓';display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:rgba(47,125,176,.14);color:var(--green);font-size:9px;flex-shrink:0}
+.pc .btn{width:100%;margin-top:auto;justify-content:center;padding:11px 20px;font-size:11px}
+@media(max-width:900px){.pc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:500px){.pc-grid{grid-template-columns:1fr;max-width:340px;margin:0 auto}}
+
+/* ═══════════════════════════════════════════════════
+   SWITCH / GUARANTEED PRICING  (new section)
+═══════════════════════════════════════════════════ */
+.switch{background:var(--pale);padding:80px 0}
+.sw-card{
+  background:linear-gradient(135deg,#123a5c 0%,#2f7db0 100%);
+  border-radius:32px;padding:52px 56px;
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;
+  align-items:center;color:#fff;
+}
+.sw-card .eyebrow{color:#7ec8e8}
+.sw-card h2{color:#fff;text-align:left;margin-bottom:12px;font-size:clamp(24px,2.5vw,34px)}
+.sw-card>div>p{color:rgba(255,255,255,.7);margin-bottom:22px}
+.sw-feats{display:flex;flex-direction:column;gap:11px;margin-bottom:26px}
+.sw-feat{display:flex;align-items:flex-start;gap:10px}
+.sw-icon{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.12);color:#7ec8e8;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;margin-top:2px}
+.sw-feat strong{font-size:15px;color:#fff;display:block;font-weight:700;margin-bottom:2px}
+.sw-feat span{font-size:13px;color:rgba(255,255,255,.6)}
+.sw-box{background:rgba(255,255,255,.15);border-radius:22px;padding:30px 32px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);text-align:center}
+.sw-price{font-size:58px;font-weight:800;letter-spacing:-.06em;color:#fff;line-height:1}
+.sw-price small{font-size:22px;font-weight:600;opacity:.8}
+.sw-label{font-size:14px;color:rgba(255,255,255,.7);margin:6px 0 16px}
+.sw-div{height:1px;background:rgba(255,255,255,.2);margin:14px 0}
+.sw-perks{display:flex;flex-direction:column;gap:7px;text-align:left}
+.sw-perk{font-size:14px;font-weight:600;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:7px}
+.sw-perk::before{content:'✓';font-size:10px;color:#fff}
+/* white CTA button inside the green card */
+.sw-btn{
+  display:flex;align-items:center;justify-content:center;
+  margin-top:20px;width:100%;
+  background:#fff;color:#123a5c;
+  border:0;border-radius:999px;
+  padding:14px 24px;font-size:14px;font-weight:800;
+  letter-spacing:.03em;text-transform:uppercase;
+  cursor:pointer;font-family:'Red Hat Text',sans-serif;
+  transition:background .15s,transform .15s,box-shadow .15s;
+  text-decoration:none;
+}
+.sw-btn:hover{background:#eef7fc;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+@media(max-width:800px){.sw-card{grid-template-columns:1fr;gap:28px;padding:36px 28px}.sw-card h2{max-width:none}}
+@media(max-width:480px){.sw-card{padding:28px 20px;border-radius:22px}}
+
+/* ═══════════════════════════════════════════════════
+   GLP-1 BENEFITS  (new section)
+═══════════════════════════════════════════════════ */
+.benefits{background:#fff;padding:80px 0}
+.ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ben{background:#f0f7fb;border-radius:18px;padding:26px 22px;border:1px solid #d7e6ee}
+.ben-ic{font-size:26px;margin-bottom:12px}
+.ben h3{font-size:17px;margin-bottom:8px}
+.ben p{font-size:15px;color:var(--muted);line-height:1.65}
+@media(max-width:800px){.ben-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.ben-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}}
+
+/* ═══════════════════════════════════════════════════
+   REVIEWS
+═══════════════════════════════════════════════════ */
+.reviews{background:#fff;padding:80px 0;text-align:center}
+.reviews h2{margin:0 auto 6px}
+.reviews .sub{max-width:620px;margin:0 auto 40px}
+.rev-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);margin-bottom:14px}
+.rev-row{display:flex;gap:14px;width:max-content;will-change:transform}
+.rev-row.ltr{animation:revL 42s linear infinite}
+.rev-row.rtl{animation:revR 48s linear infinite}
+.reviews:hover .rev-row{animation-play-state:paused}
+@keyframes revL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes revR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.rc-card{background:#eef4f9;border-radius:14px;padding:20px;flex:0 0 258px;height:160px;overflow:hidden;text-align:left}
+.rc-card .st{color:#dfbd65;font-size:13px;letter-spacing:2px;margin-bottom:8px}
+.rc-card b{font-size:14px;color:var(--black);display:block;margin-bottom:4px}
+.rc-card p{font-size:14px;color:#4a5450;line-height:1.5;margin:0}
+.rc-img{flex:0 0 110px;height:160px;border-radius:14px;overflow:hidden;background:#ddd}
+.rc-img img{width:100%;height:100%;object-fit:cover}
+
+/* ═══════════════════════════════════════════════════
+   STATS  — gradient bg, bigger aesthetic cards
+═══════════════════════════════════════════════════ */
+.stats{
+  background:linear-gradient(160deg,#e8f5ee 0%,#f0faf5 40%,#e8f1f8 70%,#e4f4ec 100%);
+  padding:90px 0;text-align:center;
+}
+.stats h2{margin:0 auto 10px;max-width:820px}
+.stats .sub{max-width:480px;margin:0 auto 52px;font-size:17px}
+.stat-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:20px;max-width:1100px;margin:0 auto;
+}
+.stat{
+  background:#fff;
+  border-radius:28px;
+  padding:44px 20px 36px;
+  box-shadow:0 4px 28px rgba(15,76,117,.09);
+  border:1px solid rgba(47,125,176,.12);
+  position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.stat:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(15,76,117,.15)}
+/* subtle top accent line */
+.stat::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:4px;background:linear-gradient(90deg,var(--green),var(--deep));
+  border-radius:28px 28px 0 0;
+}
+.stat strong{
+  display:block;font-size:56px;font-weight:800;
+  line-height:1;color:var(--deep);letter-spacing:-.06em;
+  margin-bottom:10px;
+}
+.stat span{
+  font-size:14px;font-weight:600;color:#5a6a60;
+  display:block;line-height:1.45;
+}
+@media(max-width:768px){
+  .stats{padding:64px 0}
+  .stat-grid{gap:14px;max-width:100%}
+  .stat{padding:32px 14px 26px}
+  .stat strong{font-size:42px}
+  .stat span{font-size:13px}
+}
+@media(max-width:580px){
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .stat strong{font-size:38px}
+}
+@media(max-width:380px){
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat{padding:26px 10px 20px}
+  .stat strong{font-size:32px}
+}
+
+/* ═══════════════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════════════ */
+.faq-sec{background:#fff;padding:80px 0}
+.faq-sec h2{text-align:center;margin-bottom:6px}
+.faq-sec .sub{text-align:center;margin-bottom:44px}
+.faq-list{max-width:860px;margin:0 auto}
+.faq-item{border-bottom:1px solid #dde4ea}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:15px;font-weight:700;cursor:pointer;color:var(--black);gap:12px}
+.faq-icon{width:24px;height:24px;border-radius:50%;border:1.5px solid #c0bcb6;color:#999;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:300;flex-shrink:0;transition:transform .2s,border-color .2s}
+.faq-item.open .faq-icon{transform:rotate(45deg);border-color:var(--green);color:var(--green)}
+.faq-a{display:none;padding:0 36px 18px 0;font-size:15px;line-height:1.7;color:#59635d}
+.faq-item.open .faq-a{display:block}
+
+/* ═══════════════════════════════════════════════════
+   QUIZ
+═══════════════════════════════════════════════════ */
+.quiz-sec{background:var(--cream);padding:80px 0;text-align:center}
+.quiz-card{width:min(680px,90vw);margin:0 auto}
+.quiz-card h2{margin-bottom:28px}
+.opts{display:grid;gap:10px;margin-bottom:22px}
+.opt{
+  height:52px;border:1.5px solid #d4ccc0;background:#fff;border-radius:10px;
+  display:flex;align-items:center;padding:0 20px;font-size:15px;font-weight:700;
+  cursor:pointer;transition:border-color .15s,background .15s;text-align:left;
+}
+.opt:hover,.opt.sel{border-color:var(--deep);background:rgba(15,76,117,.04);color:var(--deep)}
+.trustbar{
+  border-top:1px solid var(--line);margin-top:56px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  text-align:center;font-size:13px;font-weight:800;color:#424b46;
+}
+.trustbar div{padding:20px 8px;border-right:1px solid var(--line)}
+.trustbar div:last-child{border-right:0}
+@media(max-width:520px){.trustbar{grid-template-columns:1fr 1fr}.trustbar div:nth-child(2){border-right:0}.trustbar div:nth-child(3){border-top:1px solid var(--line)}}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+footer{background:#fff;border-top:1px solid var(--line);padding:56px 0 48px}
+.foot-nl{background:#eaf1f8;border-radius:18px;padding:28px 32px;margin-bottom:36px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.foot-nl h4{font-size:16px;font-weight:800;letter-spacing:-.02em;margin-bottom:5px}
+.foot-nl p{font-size:13px;color:var(--muted);margin:0}
+.nl-form{display:flex;gap:8px}
+.nl-input{flex:1;height:44px;border:1.5px solid #d4cfc9;border-radius:10px;padding:0 16px;font-size:13px;font-family:'Red Hat Text',sans-serif;outline:none;background:#fff;transition:border-color .15s}
+.nl-input:focus{border-color:var(--deep)}
+.foot-main{display:grid;grid-template-columns:220px 1fr;gap:48px;margin-bottom:28px}
+.foot-brand .logo-img{height:38px;margin-bottom:12px}
+.foot-brand-desc{font-size:13px;color:var(--muted);line-height:1.65;max-width:200px;margin:0}
+.foot-legit{display:flex;align-items:center;gap:10px;margin-top:16px}
+.foot-legit img{height:58px;border-radius:8px;width:auto}
+.foot-legit p{font-size:11px;color:#aaa;max-width:160px;line-height:1.5;margin:0}
+.foot-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.foot-col h4{font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--black);margin-bottom:12px}
+.foot-col a{display:block;font-size:14px;color:#888;margin-bottom:7px;transition:color .15s}
+.foot-col a:hover{color:var(--deep)}
+.foot-contact{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.cpill{background:#f4f2ee;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:700;color:#404944}
+.foot-legal p{font-size:11px;color:#bbb;line-height:1.65;margin-bottom:5px}
+.foot-bottom{border-top:1px solid var(--line);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.foot-copy{font-size:12px;color:#aaa}
+.foot-links-bot{display:flex;gap:16px;flex-wrap:wrap}
+.foot-links-bot a{font-size:12px;color:#aaa;transition:color .15s}
+.foot-links-bot a:hover{color:var(--deep)}
+@media(max-width:860px){.foot-main{grid-template-columns:1fr;gap:24px}.foot-cols{grid-template-columns:1fr 1fr}.foot-nl{grid-template-columns:1fr;gap:14px;padding:22px 20px}}
+@media(max-width:480px){.foot-cols{grid-template-columns:1fr}.trustbar{grid-template-columns:1fr 1fr}.foot-bottom{flex-direction:column;align-items:flex-start}}
+
+/* ═══════════════════════════════════════════════════
+   MOBILE MENU
+═══════════════════════════════════════════════════ */
+.mov{position:fixed;inset:0;background:rgba(10,16,12,.42);z-index:999;opacity:0;pointer-events:none;transition:opacity .22s}
+.mov.on{opacity:1;pointer-events:auto}
+.mdr{position:absolute;right:14px;top:14px;width:min(320px,calc(100vw - 28px));background:#fff;border-radius:22px;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.2);transform:translateY(-8px);transition:transform .22s}
+.mov.on .mdr{transform:translateY(0)}
+.mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.mh .logo-img{height:30px}
+.mc2{border:0;background:#f1f4ef;border-radius:50%;width:34px;height:34px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mlinks{display:flex;flex-direction:column;gap:7px;list-style:none}
+.mlinks a{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border:1px solid #eee;border-radius:12px;font-size:14px;font-weight:700;transition:background .15s}
+.mlinks a:hover{background:#e8f1f8;color:var(--deep)}
+
+/* ═══════════════════════════════════════════════════
+   VIDEO MODAL
+═══════════════════════════════════════════════════ */
+.vmod{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+.vmod.on{display:flex}
+.vbox{width:min(360px,82vw);aspect-ratio:9/16;background:#111;border-radius:18px;overflow:hidden;position:relative}
+.vbox video{width:100%;height:100%;object-fit:cover}
+.vclose{position:absolute;top:11px;right:11px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.9);font-size:18px;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center}
+
+
+.logo-text{font-family:'Red Hat Text',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.03em;color:var(--black)}
+.logo-text b{color:var(--deep);font-weight:800}
+
+/* green text utility */
+.green{color:var(--green)}
+/* ═══════════════════════════════════════════════════
+   COMPREHENSIVE MOBILE RESPONSIVENESS
+═══════════════════════════════════════════════════ */
+
+/* ── 768px and below ── */
+@media(max-width:768px){
+  /* Global section spacing */
+  .section{padding:56px 0}
+  .wrap{width:min(100% - 32px,1240px)}
+
+  /* Typography scale-down */
+  h1{font-size:clamp(28px,7.5vw,40px)}
+  h2{font-size:clamp(24px,6vw,34px)}
+  h3{font-size:clamp(16px,4.5vw,20px)}
+  p{font-size:16px}
+
+  /* Hero */
+  .hero{padding:14px 14px 0}
+  .hero-card{padding:28px 22px 0;border-radius:20px}
+  .hero h1{font-size:clamp(26px,7vw,36px)}
+  .hero-price strong{font-size:22px}
+  .hero-bullets{font-size:14px}
+  .hero-pills{gap:5px}
+  .trust-pill{font-size:11px;padding:4px 10px}
+  .hero-trust{gap:12px}
+  .hero-trust span{font-size:12px}
+
+  /* Logos */
+  .logos{padding:20px 0 18px}
+  .logos-label{font-size:11px}
+  .logo-track img{height:20px}
+
+  /* Proof section */
+  .proof{padding:48px 0 56px}
+  .proof h2{font-size:clamp(22px,5.5vw,32px)}
+  .proof-stars span{font-size:34px}
+  .proof-bottom{padding:0 16px}
+  .proof-ctas{gap:10px}
+  .proof-tp{flex-wrap:wrap;justify-content:center;gap:6px}
+
+  /* Real customers */
+  .realcust{padding:56px 0 48px}
+  .realcust h2{font-size:clamp(28px,7vw,44px)}
+  .realcust-sub,.realcust-watch{font-size:15px;padding:0 8px}
+  .realcust-arrow{width:70px}
+  /* rc-videos mobile handled by swiper */
+
+  /* Ready strip */
+  .ready-strip{padding:28px 16px}
+  .ready-strip h2{font-size:clamp(18px,5vw,26px)}
+  .ready-badges{gap:12px;flex-direction:column;align-items:center}
+
+  /* Why we're better */
+  .why{padding:48px 0}
+  .why-step{padding:10px 0}
+  .why-step-label{font-size:12px}
+  .why-step-text{font-size:15px}
+
+  /* How it works */
+  .hiw{padding:56px 0}
+  .hiw-card{padding:26px 20px}
+
+  /* Calculator */
+  .calc-sec{padding:56px 0}
+  .calc-big{font-size:38px}
+  .calc-result-big{font-size:32px}
+  .calc-box{padding:24px 20px}
+
+  /* Pricing */
+  .pricing{padding:56px 0}
+  .pc{padding:18px 16px}
+  .pc-img{height:110px}
+  .pc-img img{max-height:94px}
+  .pc h3{font-size:16px}
+  .pc-price{font-size:20px}
+
+  /* Switch */
+  .switch{padding:48px 0}
+  .sw-card{padding:32px 24px;border-radius:24px;gap:24px}
+  .sw-price{font-size:44px}
+  .sw-box{padding:24px 22px}
+
+  /* Benefits */
+  .benefits{padding:56px 0}
+  .ben{padding:22px 18px}
+
+  /* Reviews */
+  .reviews{padding:56px 0}
+  .rc-card{flex:0 0 230px;height:auto;min-height:152px}
+
+  /* Stats */
+  .stats{padding:48px 0}
+  .stat{padding:24px 12px}
+  .stat strong{font-size:36px}
+  .stat span{font-size:12px}
+
+  /* FAQ */
+  .faq-sec{padding:56px 0}
+  .faq-q{font-size:14px;padding:16px 0}
+
+  /* Quiz */
+  .quiz-sec{padding:56px 0}
+  .quiz-card h2{font-size:clamp(20px,5.5vw,28px)}
+  .opt{height:48px;font-size:14px}
+  .trustbar{font-size:11px}
+  .trustbar div{padding:16px 6px}
+
+  /* Footer */
+  .foot-nl{padding:20px 18px}
+  .foot-nl h4{font-size:15px}
+  .nl-form{flex-direction:column;gap:8px}
+  .nl-input{width:100%}
+  .foot-contact{flex-direction:column}
+  .cpill{width:100%;border-radius:14px;justify-content:center}
+}
+
+/* ── 480px and below ── */
+@media(max-width:480px){
+  .section{padding:44px 0}
+  .wrap{width:min(100% - 24px,1240px)}
+
+  .hero{padding:10px 10px 0}
+  .hero-card{padding:22px 16px 0;border-radius:16px}
+  .hero h1{font-size:clamp(24px,7.5vw,32px)}
+  .hero-img{display:none}
+  .hero-pills{display:none}
+
+  .realcust h2{font-size:clamp(26px,7.5vw,38px);letter-spacing:-.04em}
+  /* vc handled by swiper */
+
+  .sw-card{padding:24px 16px;border-radius:18px}
+  .sw-price{font-size:36px}
+
+  .stat-grid{gap:10px}
+  .stat strong{font-size:32px}
+
+  .quiz-card{padding:0 4px}
+
+  .proof-ctas .btn{width:100%;justify-content:center}
+  .ready-ctas .btn{width:100%;justify-content:center}
+  .hero-cta .btn{width:100%;justify-content:center;max-width:280px}
+
+  .foot-bottom{flex-direction:column;gap:10px}
+  .foot-links-bot{flex-direction:column;gap:8px}
+}
+
+/* ── 380px and below (very small phones) ── */
+@media(max-width:380px){
+  h2{font-size:clamp(22px,7vw,28px)}
+  .hero h1{font-size:24px}
+  .realcust h2{font-size:26px}
+  .pc-grid{max-width:100%}
+  .hiw-grid{max-width:100%}
+}
+</style>
 </head>
 <body>
-  <div class="site-shell">
-    <header class="nav-wrap" id="top">
-      <a class="brand" href="#top" aria-label="Tromso Media home">
-        <span class="brand-mark">T</span>
-        <span class="brand-name">Tromso Media</span>
-      </a>
-      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span>
-      </button>
-      <nav class="main-nav" aria-label="Primary navigation">
-        <a href="#services">Services</a>
-        <a href="#creators">For Creators</a>
-        <a href="#brands">For Brands</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a class="nav-cta" href="#apply">Become a Creator</a>
-      </nav>
-    </header>
 
-    <main>
-      <section class="hero section-pad">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Creator-led growth for modern telemedicine brands</p>
-          <h1>Marketing that feels <em>human.</em><br>Content built to perform.</h1>
-          <p class="hero-body">Tromso Media connects telemedicine and wellness brands with creators who turn authentic stories and short-form content into meaningful attention.</p>
-          <div class="hero-actions">
-            <a class="btn btn-dark" href="#contact">Work With Us <span>↗</span></a>
-            <a class="btn btn-ghost" href="#apply">Become a Creator</a>
-          </div>
-          <div class="hero-proof">
-            <div><strong>UGC</strong><span>Creator-first content</span></div>
-            <div><strong>3×</strong><span>Social platforms</span></div>
-            <div><strong>Fast</strong><span>Creative testing</span></div>
-          </div>
-        </div>
+<!-- ══ TOPBAR ══════════════════════════════════════ -->
+<div id="topbar" class="topbar">
+  Only 9 Spots Left! Save $140 + Free Shipping
+  <button class="topbar-x" onclick="document.getElementById('topbar').remove()" aria-label="Dismiss">×</button>
+</div>
 
-        <div class="hero-art reveal" aria-label="Creator campaign visual">
-          <div class="orb orb-one"></div>
-          <div class="orb orb-two"></div>
-          <div class="phone phone-main">
-            <div class="phone-top"><span></span><span></span></div>
-            <div class="creator-scene scene-one">
-              <div class="scene-copy"><small>CREATOR 01</small><b>“The hook matters.”</b></div>
-              <div class="play">▶</div>
-            </div>
-            <div class="social-row"><span>♡ 18.4K</span><span>◌ 324</span><span>↗ Share</span></div>
-          </div>
-          <div class="float-card stats-card">
-            <span class="dot"></span>
-            <small>Campaign signal</small>
-            <strong>Authenticity wins</strong>
-          </div>
-          <div class="float-card creator-card">
-            <div class="avatar">UGC</div>
-            <div><small>Creator network</small><strong>Fresh voices. Real stories.</strong></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="ticker" aria-label="Capabilities">
-        <div class="ticker-track">
-          <span>UGC</span><i>✦</i><span>CREATOR STRATEGY</span><i>✦</i><span>SHORT-FORM</span><i>✦</i><span>SOCIAL</span><i>✦</i><span>PERFORMANCE CREATIVE</span><i>✦</i>
-          <span>UGC</span><i>✦</i><span>CREATOR STRATEGY</span><i>✦</i><span>SHORT-FORM</span><i>✦</i><span>SOCIAL</span><i>✦</i><span>PERFORMANCE CREATIVE</span><i>✦</i>
-        </div>
-      </section>
-
-      <section class="section-pad intro" id="services">
-        <div class="section-heading reveal">
-          <p class="eyebrow">What we do</p>
-          <h2>Creator marketing built for how people <em>discover brands today.</em></h2>
-        </div>
-        <div class="service-grid">
-          <article class="service-card reveal"><span>01</span><h3>UGC Creator Sourcing</h3><p>Find personalities, voices, and content styles that fit the campaign—not just a follower count.</p></article>
-          <article class="service-card reveal"><span>02</span><h3>Short-Form Strategy</h3><p>Hooks, briefs, angles, and formats designed for TikTok, Instagram Reels, and Facebook.</p></article>
-          <article class="service-card reveal"><span>03</span><h3>Campaign Management</h3><p>Structured creator coordination from brief through delivery, iteration, and performance learning.</p></article>
-          <article class="service-card reveal"><span>04</span><h3>Performance Creative</h3><p>Turn organic creator language into a repeatable creative testing engine for growth.</p></article>
-        </div>
-      </section>
-
-      <section class="section-pad process-section">
-        <div class="process-head reveal">
-          <p class="eyebrow">Our process</p>
-          <h2>Simple workflow.<br>Serious creative output.</h2>
-        </div>
-        <div class="steps">
-          <article class="step reveal"><span>01</span><div><h3>Find the right creators</h3><p>We identify creators whose presence, voice, and content style align with each campaign.</p></div></article>
-          <article class="step reveal"><span>02</span><div><h3>Build creative direction</h3><p>Creators get clear briefs and messaging direction without losing what makes their content feel natural.</p></div></article>
-          <article class="step reveal"><span>03</span><div><h3>Create & publish</h3><p>Short-form content is produced for TikTok, Instagram, and Facebook with platform-native execution.</p></div></article>
-          <article class="step reveal"><span>04</span><div><h3>Learn & scale</h3><p>Winning concepts can become larger creator programs, new angles, and ongoing creative partnerships.</p></div></article>
-        </div>
-      </section>
-
-      <section class="creator-section section-pad" id="creators">
-        <div class="creator-banner reveal">
-          <div>
-            <p class="eyebrow light">Now recruiting • US creators</p>
-            <h2>Looking for UGC Creators Who <em>Love Being on Camera.</em></h2>
-          </div>
-          <p>We’re selecting a small group of US-based creators for a paid short-form content pilot. If you’re natural on camera and know what makes social content feel real, we want to hear from you.</p>
-        </div>
-
-        <div class="creator-details">
-          <article class="detail-card reveal"><span class="pill">WHO WE’RE LOOKING FOR</span><ul><li>Based in the United States</li><li>Comfortable speaking naturally on camera</li><li>Familiar with TikTok, Instagram & Facebook</li><li>Creative and comfortable following a brief</li><li>Able to produce content consistently</li><li>Open to creative feedback and iteration</li></ul></article>
-          <article class="detail-card reveal"><span class="pill">WHAT YOU’LL CREATE</span><ul><li>Approximately 5–7 short-form videos/week</li><li>Vertical video for TikTok, Reels & Facebook</li><li>Content using fresh campaign social accounts</li><li>Creator-style videos that feel natural—not overproduced</li></ul></article>
-        </div>
-
-        <div class="pay-panel reveal">
-          <div class="pay-copy">
-            <p class="eyebrow">Performance-based creator pay</p>
-            <h3>Great content should have <em>upside.</em></h3>
-            <p>Compensation scales with qualified campaign performance. Exact eligibility, attribution windows, qualification requirements, and payment terms are provided before participation.</p>
-          </div>
-          <div class="pay-table">
-            <div><span>Under 10K views</span><strong>$30</strong></div>
-            <div><span>10K+ views</span><strong>Increasing payout</strong></div>
-            <div><span>High-performing content</span><strong>Progressive tiers</strong></div>
-            <div class="pay-highlight"><span>Approx. 5M+ views</span><strong>Up to $1,500*</strong></div>
-          </div>
-          <small>*Not guaranteed. Subject to campaign qualification and payment terms.</small>
-        </div>
-
-        <div class="pilot-card reveal">
-          <span>3</span>
-          <div><p class="eyebrow">Starting small. Building something bigger.</p><h3>Our first pilot is intentionally focused.</h3><p>We’re beginning with approximately three creators. Strong performers may be considered for ongoing campaigns and additional opportunities.</p></div>
-          <a class="btn btn-light" href="#apply">Apply Now <span>↗</span></a>
-        </div>
-      </section>
-
-      <section class="trust section-pad">
-        <div class="trust-title reveal"><p class="eyebrow">Creator trust</p><h2>Received a message from <em>our creator team?</em></h2></div>
-        <div class="trust-grid reveal">
-          <div class="trust-copy"><p>If someone from Tromso Media contacted you about a creator opportunity, you can use this website to learn about the program and apply through our official channel.</p><a href="#apply">Go to creator application →</a></div>
-          <div class="never-card"><span>We will never ask creators to:</span><ul><li>Pay an application fee</li><li>Purchase access to a campaign</li><li>Share personal account passwords</li><li>Send sensitive banking information through social DMs</li></ul></div>
-        </div>
-      </section>
-
-      <section class="brands-section section-pad" id="brands">
-        <div class="brand-visual reveal"><div class="mini-phone one">HOOK<br><b>0:03</b></div><div class="mini-phone two">STORY<br><b>0:12</b></div><div class="mini-phone three">CTA<br><b>0:22</b></div></div>
-        <div class="brands-copy reveal"><p class="eyebrow">For brands</p><h2>Turn creators into a <em>repeatable growth channel.</em></h2><p>Tromso Media helps telemedicine and wellness teams develop authentic social creative without relying exclusively on highly polished traditional advertising.</p><div class="tag-list"><span>Creator sourcing</span><span>Creative production</span><span>Campaign coordination</span><span>Content testing</span><span>Multi-platform distribution</span><span>Performance strategy</span></div><a class="btn btn-dark" href="#contact">Start a Conversation <span>↗</span></a></div>
-      </section>
-
-      <section class="about section-pad" id="about">
-        <div class="about-label reveal"><p class="eyebrow">About Tromso</p></div>
-        <div class="about-copy reveal"><h2>Built at the intersection of <em>creators, performance marketing,</em> and modern healthcare.</h2><p>Tromso Media is a creator marketing agency focused on helping telemedicine and wellness companies communicate through authentic short-form content.</p><p>We believe healthcare marketing doesn’t need to feel clinical, scripted, or disconnected from the platforms where consumers spend their time. Our approach combines creator talent, structured creative direction, and performance-minded experimentation.</p></div>
-      </section>
-
-      <section class="apply-section section-pad" id="apply">
-        <div class="form-intro reveal"><p class="eyebrow light">Creator application</p><h2>Think you’d be a <em>good fit?</em></h2><p>Tell us about yourself and share a few examples. Our creator team will review your application and reach out if your profile fits the current campaign.</p></div>
-        <form class="application-form reveal" id="creatorForm">
-          <div class="field-grid"><label>Full name<input required name="name" type="text" placeholder="Your name"></label><label>Email<input required name="email" type="email" placeholder="you@example.com"></label></div>
-          <div class="field-grid"><label>City<input required name="city" type="text" placeholder="City"></label><label>State<input required name="state" type="text" placeholder="State"></label></div>
-          <div class="field-grid"><label>TikTok profile<input name="tiktok" type="url" placeholder="https://tiktok.com/@..."></label><label>Instagram profile<input name="instagram" type="url" placeholder="https://instagram.com/..."></label></div>
-          <label>Portfolio / creator examples<input name="portfolio" type="url" placeholder="Link to your portfolio, Drive, Linktree, etc."></label>
-          <label>Short introduction<textarea required name="intro" rows="4" placeholder="Tell us a little about your content and experience..."></textarea></label>
-          <div class="field-grid"><label>Comfortable on camera?<select required name="camera"><option value="">Select</option><option>Yes</option><option>No</option></select></label><label>Videos you can create per week<select required name="volume"><option value="">Select</option><option>1–3</option><option>4–6</option><option>7+</option></select></label></div>
-          <label class="check"><input required type="checkbox"><span>I confirm I am currently based in the United States and consent to being contacted regarding creator opportunities.</span></label>
-          <button class="btn btn-light form-submit" type="submit">Submit Application <span>↗</span></button>
-          <p class="form-status" id="creatorStatus" aria-live="polite"></p>
-        </form>
-      </section>
-
-      <section class="contact section-pad" id="contact">
-        <div class="contact-copy reveal"><p class="eyebrow">Let’s talk</p><h2>Ready to make your brand feel more <em>human?</em></h2><p>For brand partnerships and campaign conversations, send us a note.</p><div class="contact-lines"><a href="mailto:hello@tromsomedia.com">hello@tromsomedia.com</a><a href="mailto:creators@tromsomedia.com">creators@tromsomedia.com</a></div></div>
-        <form class="contact-form reveal" id="contactForm"><label>Name<input required type="text" name="name" placeholder="Your name"></label><label>Work email<input required type="email" name="email" placeholder="you@company.com"></label><label>Company<input type="text" name="company" placeholder="Company name"></label><label>Message<textarea required name="message" rows="5" placeholder="Tell us what you're working on..."></textarea></label><button class="btn btn-dark" type="submit">Send Message <span>↗</span></button><p class="form-status" id="contactStatus" aria-live="polite"></p></form>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-top"><a class="brand footer-brand" href="#top"><span class="brand-mark">T</span><span class="brand-name">Tromso Media</span></a><p>Creator-led marketing for telemedicine & wellness brands.</p></div>
-      <div class="footer-bottom"><div class="footer-links"><a href="#services">Services</a><a href="#creators">Creators</a><a href="#brands">Brands</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#">Privacy</a><a href="#">Terms</a></div><span>© 2026 Tromso Media. All rights reserved.</span></div>
-    </footer>
+<!-- ══ HEADER ══════════════════════════════════════ -->
+<header class="header">
+  <div class="nav">
+    <a href="#" aria-label="Tromso Media home"><span class="logo-img logo-text">Tromso <b>Media</b></span></a>
+    <nav class="nav-links">
+      <a href="#about">About Us</a>
+      <a href="#treatment">Treatment</a>
+      <a href="#hiw">How It Works</a>
+      <a href="#contact">Contact Us</a>
+    </nav>
+    <div class="nav-right">
+      <a class="nav-login" href="#portal">Log In</a>
+      <button class="hamb menu-tog" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
   </div>
-  <script src="script.js"></script>
+</header>
+
+<!-- ══ HERO ════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-card">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-stars">
+            <div class="star-row">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span class="star-half">★</span>
+            </div>
+            <span class="star-label">(4.8) Excellent! Over 100,000+ happy customers</span>
+          </div>
+          <h1>Finally serious about weight loss? Drop 40lbs by August with personalized care and GLP-1 medication</h1>
+          <p class="hero-price">Weight Loss Plans Starting at <strong>$149</strong></p>
+          <ul class="hero-bullets">
+            <li><span class="hb-icon">⊙</span> 100% online medical visit. Injection options available.</li>
+            <li><span class="hb-icon">⊙</span> Prescription &amp; telemed visits included. No insurance required.</li>
+            <li><span class="hb-icon">⊙</span> <b>Same price, every dose. No hidden fees.</b></li>
+            <li><span class="hb-icon">⊙</span> Free shipping. Arrives in 1–2 days.</li>
+          </ul>
+          <div class="hero-cta">
+            <a class="btn" href="#quiz">Get started</a>
+            <a class="btn btn-outline" href="#treatment">See Pricing</a>
+          </div>
+          <!-- HIPAA / Made in USA trust pills -->
+          <div class="hero-pills" style="display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:14px">
+            <span class="trust-pill">✓ HIPAA Compliant</span>
+            <span class="trust-pill">✓ Made in USA</span>
+            <span class="trust-pill">✓ HSA / FSA Eligible</span>
+            <span class="trust-pill">✓ Licensed US Pharmacies</span>
+          </div>
+          <!-- TrimRx-style 3-item trust row -->
+          <div class="hero-trust">
+            <span>No Hidden Fees</span>
+            <span>No Monthly Membership</span>
+            <span>Cancel Anytime</span>
+          </div>
+        </div>
+        <div class="hero-img">
+          <img class="hero-person" src="https://malmohealth.com/images/heroimagewoman.webp" alt="Tromso Media patient">
+          <!-- Two bottles side by side like TrimRx -->
+          <div class="hero-bottles">
+            <img src="https://framerusercontent.com/images/Pf1CiNDRhvpyTahyDvlblpTxlg.png?width=365&height=663" alt="GLP-1 + GIP Medication">
+            <img src="https://framerusercontent.com/images/yC9ss8H7r78CUCTtWsDAnYHOxjg.png?width=365&height=722" alt="GLP-1 Medication">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOGOS ════════════════════════════════════════ -->
+<div class="logos">
+  <div class="logos-label">We've Been Featured All Over</div>
+  <div class="logo-track">
+    <img src="https://framerusercontent.com/images/9KekST3MxSXTvnE59KOqAHNY50A.png?width=668&height=88" alt="Bloomberg">
+    <img src="https://framerusercontent.com/images/3KzkRMo94h98fAvLvmaiUUHVxbQ.png?width=476&height=88" alt="Forbes">
+    <img src="https://framerusercontent.com/images/sYWCPWbEY9rmOYyYJiEsh4HlfmQ.png?width=352&height=88" alt="Healthline">
+    <img src="https://framerusercontent.com/images/9KyRvS9B2WxbWEug7TxkjpQIrfE.png?width=536&height=88" alt="WebMD">
+    <img src="https://framerusercontent.com/images/xf3wnvh130Hy3vPA8eaJn9Ac.png?width=388&height=88" alt="Fortune">
+    <img src="https://framerusercontent.com/images/RJ1ezEvj2FVPKi9d95Kg2RTTFk.png?width=384&height=88" alt="Fast Company">
+    <img src="https://framerusercontent.com/images/cHvuOOdDBPJSFtv25gdlsftlNXU.png?width=612&height=88" alt="NYT">
+    <img src="https://framerusercontent.com/images/9KekST3MxSXTvnE59KOqAHNY50A.png?width=668&height=88" alt="Bloomberg">
+    <img src="https://framerusercontent.com/images/3KzkRMo94h98fAvLvmaiUUHVxbQ.png?width=476&height=88" alt="Forbes">
+    <img src="https://framerusercontent.com/images/sYWCPWbEY9rmOYyYJiEsh4HlfmQ.png?width=352&height=88" alt="Healthline">
+    <img src="https://framerusercontent.com/images/9KyRvS9B2WxbWEug7TxkjpQIrfE.png?width=536&height=88" alt="WebMD">
+    <img src="https://framerusercontent.com/images/xf3wnvh130Hy3vPA8eaJn9Ac.png?width=388&height=88" alt="Fortune">
+    <img src="https://framerusercontent.com/images/RJ1ezEvj2FVPKi9d95Kg2RTTFk.png?width=384&height=88" alt="Fast Company">
+    <img src="https://framerusercontent.com/images/cHvuOOdDBPJSFtv25gdlsftlNXU.png?width=612&height=88" alt="NYT">
+  </div>
+</div>
+
+<!-- ══ PROOF ════════════════════════════════════════ -->
+<section class="proof">
+  <div class="proof-patients">10,000+ Patients Agree</div>
+  <div class="proof-stars">
+    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+  </div>
+  <h2>"When nothing else worked, <span class="green">TROMSO did</span>"</h2>
+  <div class="proof-verified">Verified Tromso Customer</div>
+
+  <!-- quote clouds scattered around bottle -->
+  <div class="qc q1">Very easy and convenient for a very busy working lady.<span class="qc-attr">Verified Tromso Customer</span></div>
+  <div class="qc q2">…the weight vanished!<span class="qc-attr">Verified Tromso Customer</span></div>
+  <div class="qc q3">Very nice and informative Dr. Quick and easy!<span class="qc-attr">Verified Tromso Customer</span></div>
+  <div class="qc q4">Every person I have contact with shows compassion.<span class="qc-attr">Verified Tromso Customer</span></div>
+  <div class="qc q5">The company, staff, and docs are amazing.<span class="qc-attr">Verified Tromso Customer</span></div>
+  <div class="qc q6">NP was very helpful and friendly!<span class="qc-attr">Verified Tromso Customer</span></div>
+
+  <img class="bottle" src="https://framerusercontent.com/images/yC9ss8H7r78CUCTtWsDAnYHOxjg.png?width=365&height=722" alt="GLP medication">
+  <img class="proof-hsa" src="https://framerusercontent.com/images/9dJuVdMywmkxuZsvLYp1uqn3vc.png?width=1500&height=300" alt="HSA FSA">
+
+  <!-- scrolling trust marquee -->
+  <div class="proof-marquee-wrap">
+    <div class="proof-marquee">
+      <span>👥 Trusted by 100k+ Americans</span>
+      <span>👩‍⚕️ 1:1 Medical Support</span>
+      <span>🏪 US-Certified Pharmacy</span>
+      <span>💊 Personalized Treatments</span>
+      <span>✅ Accessible &amp; Affordable</span>
+      <span>📋 Personalized Treatment Plans</span>
+      <span>👥 Trusted by 100k+ Americans</span>
+      <span>👩‍⚕️ 1:1 Medical Support</span>
+      <span>🏪 US-Certified Pharmacy</span>
+      <span>💊 Personalized Treatments</span>
+      <span>✅ Accessible &amp; Affordable</span>
+      <span>📋 Personalized Treatment Plans</span>
+    </div>
+  </div>
+
+  <!-- bottom CTA + trust row + Trustpilot -->
+  <div class="proof-bottom">
+    <div class="proof-ctas">
+      <a class="btn" href="#quiz">Get started</a>
+      <a class="btn btn-outline" href="#treatment">See Pricing</a>
+    </div>
+    <div class="proof-trust-row" style="margin-top:12px">
+      <span>No Hidden Fees</span>
+      <span>No Monthly Membership</span>
+      <span>Cancel Anytime</span>
+    </div>
+    <div class="proof-tp">
+      <span class="proof-tp-label">Excellent 4.8</span>
+      <div class="proof-tp-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <span class="proof-tp-count">100,000+ happy customers</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REAL CUSTOMERS — with floating rotating bottles ══ -->
+<section class="realcust">
+  <!-- floating bottles left & right -->
+  <img class="rc-bottle rc-bottle-l" src="https://framerusercontent.com/images/DeqDtAptTnsv7LUrxM3kQuVFt68.png?width=900&height=935" alt="">
+  <img class="rc-bottle rc-bottle-r" src="https://framerusercontent.com/images/DeqDtAptTnsv7LUrxM3kQuVFt68.png?width=900&height=935" alt="">
+
+  <div class="realcust-inner wrap">
+    <h2>Real Customers. No<br>shame. All <em>Confidence.</em></h2>
+    <p class="realcust-sub">There's no shame in using medical weight loss to support your health when traditional methods aren't cutting it. Paired with a balanced diet and regular exercise, a weight loss treatment plan can help you overcome biological barriers, maintain healthy habits, and reach your goals.</p>
+    <p class="realcust-watch">Watch what our customers have to say about losing weight with Tromso:</p>
+    <img class="realcust-arrow" src="https://framerusercontent.com/images/4sflX4CiXXPwZnTRZdgvlWmQQ.png?width=320&height=500" alt="">
+  </div>
+  <div class="vimeo-grid wide" style="margin-top:32px">
+    <div class="vimeo-card">
+      <div style="padding:177.78% 0 0 0;position:relative;">
+        <iframe src="https://player.vimeo.com/video/1202261350?h=f2f78cef65&badge=0&autopause=0&loop=1&title=0&byline=0&portrait=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="Tromso - UGC 1"></iframe>
+      </div>
+    </div>
+    <div class="vimeo-card">
+      <div style="padding:177.78% 0 0 0;position:relative;">
+        <iframe src="https://player.vimeo.com/video/1202261351?h=ed617128da&badge=0&autopause=0&loop=1&title=0&byline=0&portrait=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="Tromso - UGC 2"></iframe>
+      </div>
+    </div>
+    <div class="vimeo-card">
+      <div style="padding:177.78% 0 0 0;position:relative;">
+        <iframe src="https://player.vimeo.com/video/1202261353?h=c72ceae078&badge=0&autopause=0&loop=1&title=0&byline=0&portrait=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="Tromso - UGC 3"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ READY STRIP ══════════════════════════════════ -->
+<div class="ready-strip">
+  <div class="wrap">
+    <h2>Ready to lose 20% of your body weight?</h2>
+    <div class="ready-ctas">
+      <a class="btn" href="#quiz">Get Started</a>
+      <a class="btn btn-green" href="#treatment">See Pricing</a>
+    </div>
+    <div class="ready-badges">
+      <span class="rb"><span class="rb-stars">★★★★★</span> Trustpilot 4.8</span>
+      <span class="rb">✓ No Membership Fee</span>
+      <span class="rb">✓ Monthly Billing</span>
+      <span class="rb">✓ 3 Month Results Guarantee</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WHY WE'RE BETTER ═════════════════════════════ -->
+<section class="why section" id="about">
+  <div class="wrap">
+    <div class="why-inner">
+      <div class="why-copy">
+        <h2>Why we're better at weight loss</h2>
+        <p class="why-sub">Tromso healthcare, without the long wait times or doctor denials.</p>
+        <div class="why-steps">
+          <div class="why-step">
+            <span class="why-step-label">Today</span>
+            <span class="why-step-text">Get $140 Off Today!</span>
+          </div>
+          <div class="why-step">
+            <span class="why-step-label">In 1 day</span>
+            <span class="why-step-text">Provider writes an Rx</span>
+          </div>
+          <div class="why-step">
+            <span class="why-step-label">Within 1 day</span>
+            <span class="why-step-text">Your order ships from our licensed US pharmacies</span>
+          </div>
+          <div class="why-step">
+            <span class="why-step-label">Free &amp; Discreet 2-Day Delivery</span>
+            <span class="why-step-text">Get your medication</span>
+          </div>
+          <div class="why-step">
+            <span class="why-step-label">On-going care &amp; support</span>
+            <span class="why-step-text">Begin treatment</span>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual">
+        <div class="why-phone-card">
+          <div style="width:100%;max-width:480px;height:420px;border-radius:24px;background:linear-gradient(160deg,#12314a,#1c5580);display:flex;align-items:center;justify-content:center;color:#eaf3fa;font-weight:800;font-size:14px;letter-spacing:.05em;text-transform:uppercase;">Tromso App Preview</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══════════════════════════════════ -->
+<section class="hiw section" id="hiw">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Simple Process</span>
+      <h2>How Tromso works in <span class="green">3 easy steps</span></h2>
+    </div>
+    <div class="hiw-grid">
+      <div class="hiw-card"><div class="hiw-n">1</div><h3>Get Approved</h3><p>Complete a quick 5-minute online evaluation. Our licensed team reviews your info and provides approval guidance — no clinic visit required.</p></div>
+      <div class="hiw-card"><div class="hiw-n">2</div><h3>Get Prescribed</h3><p>A licensed provider writes you a tailored prescription. Meet via telehealth within 24 hours and receive your personalized dosing plan.</p></div>
+      <div class="hiw-card"><div class="hiw-n">3</div><h3>Receive Your Rx</h3><p>Medication ships free from a licensed US pharmacy — arrives in 1–2 days in discreet packaging with clear instructions.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:32px"><a class="btn btn-green" href="#quiz">Get Started Today</a></div>
+  </div>
+</section>
+
+<!-- ══ WEIGHT CALCULATOR ════════════════════════════ -->
+<section class="calc-sec section" id="calculator">
+  <div class="wrap">
+    <div class="calc-grid">
+      <div class="calc-copy">
+        <span class="eyebrow">Your Potential</span>
+        <h2>Want to <span class="green">reach your goal</span> weight fast?</h2>
+        <p>It's not magic — it's metabolic science. GLP-1 is a naturally occurring hormone that regulates appetite and blood sugar, improving your metabolism and supporting lasting habits.</p>
+        <a class="btn" href="#quiz">Get Started</a>
+      </div>
+      <div class="calc-box">
+        <div class="calc-label">Select your current weight:</div>
+        <div class="calc-big"><output id="cw">169</output><small> lbs</small></div>
+        <input id="wr" class="wrange" type="range" min="120" max="320" value="169" step="1" aria-label="Current weight">
+        <div class="calc-result-label">Weight you could lose:</div>
+        <div class="calc-result-big"><output id="pl">39</output><small> lbs</small></div>
+        <div class="calc-note">*Based on avg 18–23% body weight reduction in clinical studies.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING CARDS ════════════════════════════════ -->
+<section class="pricing section" id="treatment">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Medication Options</span>
+      <h2>Trusted by experts, <span class="green">priced for you.</span></h2>
+      <p>Find the right GLP-1 medication — clinician-guided, budget-friendly care with no hidden fees.</p>
+    </div>
+    <div class="pc-grid">
+      <article class="pc"><div class="pc-img"><img src="https://framerusercontent.com/images/yC9ss8H7r78CUCTtWsDAnYHOxjg.png?width=365&height=722" alt="Semaglutide"></div><h3>Semaglutide Injection</h3><div class="pc-price">$149 <span>/ month</span></div><ul class="pc-feats"><li>Weekly self-injection</li><li>Clinician-prescribed dose</li><li>Free shipping</li><li>Licensed US pharmacy</li></ul><a class="btn btn-green" href="#quiz">Get Started</a></article>
+      <article class="pc pop"><span class="pc-badge">Most Popular</span><div class="pc-img b"><img src="https://framerusercontent.com/images/Pf1CiNDRhvpyTahyDvlblpTxlg.png?width=365&height=663" alt="Tirzepatide"></div><h3>Tirzepatide Injection</h3><div class="pc-price">$299 <span>/ month</span></div><ul class="pc-feats"><li>GLP-1 + GIP dual action</li><li>Up to 22% body weight loss</li><li>Personalized dose titration</li><li>Unlimited provider messaging</li></ul><a class="btn" href="#quiz">Get Started</a></article>
+      <article class="pc"><div class="pc-img"><img src="https://framerusercontent.com/images/wJZ8PTEwOhQJ6J0VQFBpcgY3sw.png?width=638&height=796" alt="Oral Sema"></div><h3>Oral Semaglutide</h3><div class="pc-price">$199 <span>/ month</span></div><ul class="pc-feats"><li>Daily tablet — no injections</li><li>Clinician-reviewed plan</li><li>Discreet delivery</li><li>Cancel anytime</li></ul><a class="btn btn-green" href="#quiz">Get Started</a></article>
+      <article class="pc"><div class="pc-img"><img src="https://framerusercontent.com/images/b6hlscnSlsiGTKDOD08aCB1BI.png?width=312&height=592" alt="Retatrutide"></div><h3>Retatrutide Injection</h3><div class="pc-price">$349 <span>/ month</span></div><ul class="pc-feats"><li>Triple hormone agonist</li><li>Next-gen weight loss</li><li>Provider-led titration</li><li>24/7 support</li></ul><a class="btn btn-green" href="#quiz">Get Started</a></article>
+      <article class="pc"><div class="pc-img"><img src="https://framerusercontent.com/images/dnnV3Ko6CTQbbFcd3LxdIdrOzw.png?width=312&height=592" alt="Sermorelin"></div><h3>Sermorelin Injection</h3><div class="pc-price">$149 <span>/ month</span></div><ul class="pc-feats"><li>Growth hormone support</li><li>Metabolic optimization</li><li>US compounding pharmacy</li><li>Free 1-on-1 onboarding</li></ul><a class="btn btn-green" href="#quiz">Get Started</a></article>
+      <article class="pc"><div class="pc-img b"><img src="https://framerusercontent.com/images/yC9ss8H7r78CUCTtWsDAnYHOxjg.png?width=365&height=722" alt="NAD+"></div><h3>NAD+ Injection</h3><div class="pc-price">$169 <span>/ month</span></div><ul class="pc-feats"><li>Cellular energy support</li><li>Anti-aging boost</li><li>Pair with any GLP-1 plan</li><li>Provider-guided dosing</li></ul><a class="btn btn-green" href="#quiz">Get Started</a></article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SWITCH / GUARANTEED PRICING ══════════════════ -->
+<section class="switch section">
+  <div class="wrap">
+    <div class="sw-card">
+      <div>
+        <span class="eyebrow">Transparent Pricing</span>
+        <h2>Same price, <span style="color:#7ec8e8">every dose.</span> No surprises.</h2>
+        <p>What you see is what you pay — no hidden fees, no membership charges, no insurance hoops.</p>
+        <div class="sw-feats">
+          <div class="sw-feat"><div class="sw-icon">✓</div><div><strong>No monthly membership</strong><span>Pay only for your medication.</span></div></div>
+          <div class="sw-feat"><div class="sw-icon">✓</div><div><strong>No insurance required</strong><span>Everyone qualifies at listed prices.</span></div></div>
+          <div class="sw-feat"><div class="sw-icon">✓</div><div><strong>Cancel anytime</strong><span>No lock-in. Stop or pause whenever.</span></div></div>
+          <div class="sw-feat"><div class="sw-icon">✓</div><div><strong>HSA / FSA eligible</strong><span>Use pre-tax dollars for treatment.</span></div></div>
+        </div>
+        <a class="btn btn-gold" href="#quiz">Start For $149</a>
+      </div>
+      <div class="sw-box">
+        <div class="sw-price">$149 <small>/ mo</small></div>
+        <div class="sw-label">Starting price — no hidden extras</div>
+        <div class="sw-div"></div>
+        <div class="sw-perks">
+          <div class="sw-perk">Free telehealth visit included</div>
+          <div class="sw-perk">Licensed US pharmacy dispensing</div>
+          <div class="sw-perk">Free 2-day discreet shipping</div>
+          <div class="sw-perk">Unlimited provider messaging</div>
+          <div class="sw-perk">Personalized dosing plan</div>
+          <div class="sw-perk">24/7 support team access</div>
+        </div>
+        <div style="margin-top:20px"><a class="sw-btn" href="#quiz">Get Approved Now</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GLP-1 BENEFITS ════════════════════════════════ -->
+<section class="benefits section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why GLP-1</span>
+      <h2>What GLP-1 actually does <span class="green">to your body</span></h2>
+      <p>GLP-1 receptor agonists work with your biology — not against it — to produce meaningful, lasting results.</p>
+    </div>
+    <div class="ben-grid">
+      <div class="ben"><div class="ben-ic">🧠</div><h3>Reduces Hunger Signals</h3><p>GLP-1 acts on the hypothalamus to reduce appetite and cravings, helping you feel satisfied with less food.</p></div>
+      <div class="ben"><div class="ben-ic">🔥</div><h3>Boosts Metabolism</h3><p>Regulates blood sugar and insulin response so your body burns fat more efficiently throughout the day.</p></div>
+      <div class="ben"><div class="ben-ic">❤️</div><h3>Improves Heart Health</h3><p>Clinical trials show GLP-1 agonists significantly reduce cardiovascular risk, blood pressure, and inflammation.</p></div>
+      <div class="ben"><div class="ben-ic">💉</div><h3>Regulates Blood Sugar</h3><p>Originally for type-2 diabetes, GLP-1 medications stabilize glucose levels and reduce insulin resistance.</p></div>
+      <div class="ben"><div class="ben-ic">⚡</div><h3>Slows Digestion</h3><p>Slows gastric emptying so nutrients absorb gradually — keeping you fuller longer and preventing spikes.</p></div>
+      <div class="ben"><div class="ben-ic">🎯</div><h3>Clinically Proven Results</h3><p>Patients lost an average of 15–22% of body weight over 68 weeks — far beyond diet and exercise alone.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REVIEWS ═══════════════════════════════════════ -->
+<section class="reviews section" id="reviews">
+  <div class="wrap">
+    <h2>100k+ Happy Customers <span class="green">:)</span></h2>
+    <p class="sub">Real results, real people, and real love from our verified customers.</p>
+  </div>
+  <div style="margin-top:36px">
+    <div class="rev-wrap">
+      <div class="rev-row ltr">
+        <div class="rc-card"><div class="st">★★★★★</div><b>Brandon M.</b><p>"Very easy and convenient. Customer service was very attentive."</p></div>
+        <div class="rc-img"><img src="https://framerusercontent.com/images/xo40LTpGRUNbRgY5ygK0CstPbM.jpg?width=554&height=928" alt=""></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Olivia C.</b><p>"Best decision I've made for my health. Seamless from start to finish."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Jamie</b><p>"Quick to respond and keep me updated. Easy to navigate."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Jacqueline</b><p>"They provided me with all the resources to be successful."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Diana</b><p>"The staff has been so kind and professional. They genuinely care."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Brandon M.</b><p>"Very easy and convenient. Customer service was very attentive."</p></div>
+        <div class="rc-img"><img src="https://framerusercontent.com/images/xo40LTpGRUNbRgY5ygK0CstPbM.jpg?width=554&height=928" alt=""></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Olivia C.</b><p>"Best decision I've made for my health. Seamless from start to finish."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Jamie</b><p>"Quick to respond and keep me updated. Easy to navigate."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Jacqueline</b><p>"They provided me with all the resources to be successful."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Diana</b><p>"The staff has been so kind and professional. They genuinely care."</p></div>
+      </div>
+    </div>
+    <div class="rev-wrap" style="margin-top:14px">
+      <div class="rev-row rtl">
+        <div class="rc-card"><div class="st">★★★★★</div><b>Sophia T.</b><p>"Spoke with a doctor within 24 hours. Medication arrived in days."</p></div>
+        <div class="rc-img"><img src="https://framerusercontent.com/images/79palwpwbJObwiTXk84wenTFQs.jpg?width=904&height=928" alt=""></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Greg</b><p>"I was ready to give up. Wow. Dieting days are over."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Lou-Ann</b><p>"Professional and prompt. I feel in great hands."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Elizabeth</b><p>"My clinician was understanding and easy to work with."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Kevin A.</b><p>"Tromso exceeded all expectations. Wish I'd started sooner!"</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Sophia T.</b><p>"Spoke with a doctor within 24 hours. Medication arrived in days."</p></div>
+        <div class="rc-img"><img src="https://framerusercontent.com/images/79palwpwbJObwiTXk84wenTFQs.jpg?width=904&height=928" alt=""></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Greg</b><p>"I was ready to give up. Wow. Dieting days are over."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Lou-Ann</b><p>"Professional and prompt. I feel in great hands."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Elizabeth</b><p>"My clinician was understanding and easy to work with."</p></div>
+        <div class="rc-card"><div class="st">★★★★★</div><b>Kevin A.</b><p>"Tromso exceeded all expectations. Wish I'd started sooner!"</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══════════════════════════════════════════ -->
+<section class="stats section">
+  <div class="wrap">
+    <h2>Why are so many patients signing up for <span class="green">Tromso?</span> It Works.</h2>
+    <p class="sub">On average, 38% of patients in the Tromso program met their goal weight.</p>
+    <div class="stat-grid">
+      <div class="stat"><strong id="s1">0%</strong><span>Average weight loss</span></div>
+      <div class="stat"><strong id="s2">0/10</strong><span>Patients call it the most effective treatment to date</span></div>
+      <div class="stat"><strong id="s3">0''</strong><span>Potential waist reduction</span></div>
+      <div class="stat"><strong id="s4">0%</strong><span>Kept the weight off</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ════════════════════════════════════════════ -->
+<section class="faq-sec section" id="faq">
+  <div class="wrap">
+    <h2>We've got you.</h2>
+    <p class="sub">Your questions, answered.</p>
+    <div class="faq-list">
+      <div class="faq-item open"><div class="faq-q">How does Tromso work?<span class="faq-icon">+</span></div><div class="faq-a">Tromso connects you with licensed medical providers online. Complete a brief intake, meet with a provider via telehealth, and if eligible, receive a prescription shipped from a licensed US pharmacy directly to your door.</div></div>
+      <div class="faq-item"><div class="faq-q">How do I know this is safe?<span class="faq-icon">+</span></div><div class="faq-a">All medications are prescribed by licensed clinicians and dispensed by licensed US pharmacies. Your provider reviews your full health history before prescribing.</div></div>
+      <div class="faq-item"><div class="faq-q">How does the sign-up process work?<span class="faq-icon">+</span></div><div class="faq-a">Complete a quick online intake, a provider reviews your case, and if approved, your prescription ships within 24–48 hours. Most patients receive their first order in 2–3 business days.</div></div>
+      <div class="faq-item"><div class="faq-q">What states/jurisdictions are eligible?<span class="faq-icon">+</span></div><div class="faq-a">Tromso currently serves most US states. Eligibility is confirmed during the intake process. Some states may have limitations on specific medications.</div></div>
+      <div class="faq-item"><div class="faq-q">How does the pricing work?<span class="faq-icon">+</span></div><div class="faq-a">You pay a flat monthly fee for your medication — no membership, no hidden charges. Plans start at $149/month and include telehealth visits, provider messaging, and free shipping.</div></div>
+      <div class="faq-item"><div class="faq-q">What if I need to cancel?<span class="faq-icon">+</span></div><div class="faq-a">You can cancel anytime with no fees or penalties. Simply contact our support team before your next billing date.</div></div>
+      <div class="faq-item"><div class="faq-q">Is the medication GLP-1 / Semaglutide / GIP-1?<span class="faq-icon">+</span></div><div class="faq-a">Yes. Our compounded semaglutide and tirzepatide contain the same active pharmaceutical ingredients as branded medications, prepared by licensed US compounding pharmacies.</div></div>
+      <div class="faq-item"><div class="faq-q">Do you offer non-injectable options?<span class="faq-icon">+</span></div><div class="faq-a">Yes — we offer oral semaglutide tablets. Your provider will help determine the best option for your goals and health history.</div></div>
+      <div class="faq-item"><div class="faq-q">What is the drug I'll be taking?<span class="faq-icon">+</span></div><div class="faq-a">Depending on your prescription, you may receive compounded semaglutide, tirzepatide, retatrutide, sermorelin, or others. Your provider will explain your specific prescription in detail.</div></div>
+      <div class="faq-item"><div class="faq-q">Where do my prescriptions come from?<span class="faq-icon">+</span></div><div class="faq-a">Prescriptions are fulfilled by licensed US compounding pharmacies that meet strict sterile compounding standards.</div></div>
+      <div class="faq-item"><div class="faq-q">How do I take my medication?<span class="faq-icon">+</span></div><div class="faq-a">Injection medications are self-administered weekly or as directed. Oral medications are taken daily. Your provider will walk you through the process with clear instructions.</div></div>
+      <div class="faq-item"><div class="faq-q">How is it shipped?<span class="faq-icon">+</span></div><div class="faq-a">Medications ship free via 2-day shipping in discreet packaging. Temperature-sensitive medications include cold-chain packaging.</div></div>
+      <div class="faq-item"><div class="faq-q">How much weight will I lose?<span class="faq-icon">+</span></div><div class="faq-a">Clinical studies show patients lose an average of 15–22% of body weight over 68 weeks. Results vary based on starting weight, adherence, diet, and exercise habits.</div></div>
+      <div class="faq-item"><div class="faq-q">How do I contact support?<span class="faq-icon">+</span></div><div class="faq-a">Reach us at hello@tromsomedia.com or call 1 343 303 5101. Our team is available 24/7 and typically responds within 1–2 hours.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ QUIZ ════════════════════════════════════════════ -->
+<section class="quiz-sec section" id="quiz">
+  <div class="wrap">
+    <div class="quiz-card">
+      <h2>What Is Your Weight Goal?</h2>
+      <div class="opts">
+        <div class="opt sel">Losing 1-20 lbs</div>
+        <div class="opt">Losing 21-50 lbs</div>
+        <div class="opt">I want to lose more</div>
+        <div class="opt">Seriously just want to lose weight</div>
+      </div>
+      <button class="btn" id="qbtn" type="button" style="width:100%;justify-content:center;padding:14px">Continue</button>
+    </div>
+    <div class="trustbar" style="max-width:min(1100px,94vw);margin:56px auto 0;border-radius:16px;overflow:hidden;border:1px solid var(--line)">
+      <div>✓ Tromso Guarantee</div>
+      <div>🚚 Free Expedited Delivery</div>
+      <div>👩‍⚕️ Doctor-Led Plans</div>
+      <div>🔒 No Hidden Fees</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════ -->
+<footer id="contact">
+  <div class="wrap">
+    <!-- Newsletter -->
+    <div class="foot-nl">
+      <div><h4>Stay in the loop</h4><p>GLP-1 news, patient stories, and exclusive offers to your inbox.</p></div>
+      <div><div class="nl-form"><input class="nl-input" id="nli" type="email" placeholder="Your email address" aria-label="Email"><button class="btn btn-green" id="nlb" type="button">Subscribe</button></div></div>
+    </div>
+
+    <div class="foot-main">
+      <div class="foot-brand">
+        <span class="logo-img logo-text">Tromso <b>Media</b></span>
+        <p class="foot-brand-desc">Personalized GLP-1 weight loss care. Online, affordable, effective.</p>
+        <div class="foot-legit">
+          <img src="https://malmohealth.com/images/1gq44RBhR5fTo4JBo34JZ9T4f7k8445.png" alt="LegitScript Certified">
+          <p>LegitScript certified — verified safe and legal.</p>
+        </div>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="#about">About Us</a>
+          <a href="#reviews">Patient Stories</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#portal" id="portal"><b>Patient Portal / Log In →</b></a>
+        </div>
+        <div class="foot-col">
+          <h4>Treatments</h4>
+          <a href="#treatment">Semaglutide Injection</a>
+          <a href="#treatment">Tirzepatide Injection</a>
+          <a href="#treatment">Oral Semaglutide</a>
+          <a href="#treatment">Retatrutide</a>
+          <a href="#treatment">Sermorelin</a>
+          <a href="#treatment">NAD+ Injection</a>
+        </div>
+        <div class="foot-col">
+          <h4>Legal &amp; Support</h4>
+          <a href="https://tromsomedia.com/safety-information">Safety Information</a>
+          <a href="https://tromsomedia.com/terms-and-conditions">Terms &amp; Conditions</a>
+          <a href="https://tromsomedia.com/privacy-policy">Privacy Policy</a>
+          <a href="https://tromsomedia.com/hipaa-privacy-policy">HIPAA Privacy Policy</a>
+          <a href="https://tromsomedia.com/refund-policy">Refund Policy</a>
+          <a href="https://tromsomedia.com/shipping-policy">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-contact">
+      <a class="cpill" href="mailto:hello@tromsomedia.com">✉ hello@tromsomedia.com</a>
+      <a class="cpill" href="tel:13433035101">📞 1 343 303 5101</a>
+      <div class="cpill">📍 8 The Green STE A, Dover, DE 19901, United States</div>
+    </div>
+
+    <div class="foot-legal">
+      <p>*The assessment made available on the Tromso Media website does not create a doctor-patient relationship. A licensed clinician may meet with an individual after checkout to determine if they qualify for a prescription. Results vary based on starting weight, program adherence, diet, exercise, and medical history. Images may depict models.</p>
+    </div>
+
+    <div class="foot-bottom">
+      <span class="foot-copy">© 2026 Tromso Media. All rights reserved.</span>
+      <div class="foot-links-bot">
+        <a href="https://tromsomedia.com/terms-and-conditions">Terms</a>
+        <a href="https://tromsomedia.com/privacy-policy">Privacy</a>
+        <a href="https://tromsomedia.com/refund-policy">Refund Policy</a>
+        <a href="https://tromsomedia.com/hipaa-privacy-policy">HIPAA</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ MOBILE MENU ════════════════════════════════════ -->
+<div class="mov" id="mov" aria-hidden="true">
+  <div class="mdr">
+    <div class="mh"><span class="logo-img logo-text">Tromso <b>Media</b></span><button class="mc2" aria-label="Close">×</button></div>
+    <ul class="mlinks">
+      <li><a href="#about">About Us <span>→</span></a></li>
+      <li><a href="#treatment">Treatment <span>→</span></a></li>
+      <li><a href="#hiw">How It Works <span>→</span></a></li>
+      <li><a href="#faq">FAQ <span>→</span></a></li>
+      <li><a href="#contact">Contact Us <span>→</span></a></li>
+      <li><a href="#portal">Log In <span>→</span></a></li>
+    </ul>
+    <div style="margin-top:12px"><a class="btn btn-green" href="#quiz" style="width:100%;justify-content:center">Get Approved →</a></div>
+  </div>
+</div>
+
+<!-- ══ VIDEO MODAL ════════════════════════════════════ -->
+<div class="vmod" id="vmod">
+  <div class="vbox"><video id="vmv" controls playsinline></video><button class="vclose" id="vmc">×</button></div>
+</div>
+
+<script>
+(function(){
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const item=q.parentElement, was=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!was) item.classList.add('open');
+    });
+  });
+
+  // Quiz options
+  document.querySelectorAll('.opt').forEach(o=>{
+    o.addEventListener('click',()=>{ document.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel')); o.classList.add('sel'); });
+  });
+  document.getElementById('qbtn').addEventListener('click',()=>{
+    const s=document.querySelector('.opt.sel');
+    if(s) alert('Goal: '+s.textContent.trim()+'\n\nIn production this redirects to the intake form.');
+  });
+
+  // Weight calculator
+  const wr=document.getElementById('wr'), cw=document.getElementById('cw'), pl=document.getElementById('pl');
+  function calc(){
+    const w=+wr.value, loss=Math.max(12,Math.round(w*.23));
+    cw.textContent=w; pl.textContent=loss;
+    const p=(w-+wr.min)/(+wr.max-+wr.min)*100;
+    wr.style.background=`linear-gradient(90deg,#c9a85f ${p}%,#d4c2ab ${p}%)`;
+  }
+  wr.addEventListener('input',calc); calc();
+
+  // Stats counter
+  const sv={s1:'18%',s2:'9/10',s3:'6.5"',s4:'93%'};
+  function anim(el,v){
+    const m=v.match(/^([\d.]+)([\s\S]*)$/);
+    if(!m){el.textContent=v;return;}
+    const n=parseFloat(m[1]),suf=m[2],d=(m[1].split('.')[1]||'').length,dur=1400,t0=performance.now();
+    (function t(now){ const p=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-p,3); el.textContent=(n*e).toFixed(d)+suf; if(p<1) requestAnimationFrame(t); else el.textContent=m[1]+suf; })(t0);
+  }
+  const sg=document.querySelector('.stat-grid');
+  if(sg&&'IntersectionObserver' in window){
+    let done=false;
+    new IntersectionObserver(es=>{if(es[0].isIntersecting&&!done){done=true;Object.entries(sv).forEach(([id,v])=>{const el=document.getElementById(id);if(el)anim(el,v)});}},{threshold:.3}).observe(sg);
+  } else Object.entries(sv).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.textContent=v;});
+
+  // Mobile menu
+  const mov=document.getElementById('mov'), tog=document.querySelector('.menu-tog'), mc2=document.querySelector('.mc2');
+  const open=()=>{mov.classList.add('on');mov.setAttribute('aria-hidden','false');tog&&tog.setAttribute('aria-expanded','true')};
+  const close=()=>{mov.classList.remove('on');mov.setAttribute('aria-hidden','true');tog&&tog.setAttribute('aria-expanded','false')};
+  tog&&tog.addEventListener('click',open); mc2&&mc2.addEventListener('click',close);
+  mov.addEventListener('click',e=>{if(e.target===mov)close()});
+  document.querySelectorAll('.mlinks a').forEach(a=>a.addEventListener('click',close));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeV()}});
+
+  // Video modal
+  const vmod=document.getElementById('vmod'), vmv=document.getElementById('vmv'), vmc=document.getElementById('vmc');
+  function closeV(){vmod.classList.remove('on');vmv.pause();vmv.src=''}
+  document.querySelectorAll('.vc').forEach(c=>c.addEventListener('click',()=>{
+    const s=c.dataset.src; if(s){vmv.src=s;vmod.classList.add('on');vmv.play().catch(()=>{})}
+  }));
+  vmc.addEventListener('click',closeV);
+  vmod.addEventListener('click',e=>{if(e.target===vmod)closeV()});
+
+  // Newsletter
+  const nlb=document.getElementById('nlb'), nli=document.getElementById('nli');
+  nlb.addEventListener('click',()=>{
+    if(nli.value&&nli.value.includes('@')){nlb.textContent='Subscribed ✓';nli.value='';nli.placeholder="You're subscribed!";nli.disabled=true;}
+    else{nli.style.borderColor='#e44';setTimeout(()=>nli.style.borderColor='',1200);}
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+    const t=document.getElementById(a.getAttribute('href').slice(1));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  }));
+})();
+</script>
+
+<!-- Vimeo Player API -->
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+// Wait for Vimeo API to be available, then attach end-screen reset
+(function initVimeo() {
+  if (typeof Vimeo === 'undefined' || typeof Vimeo.Player === 'undefined') {
+    setTimeout(initVimeo, 100);
+    return;
+  }
+  document.querySelectorAll('.vimeo-card iframe').forEach(function(iframe) {
+    var player = new Vimeo.Player(iframe);
+    player.on('ended', function() {
+      player.setCurrentTime(0).then(function() {
+        player.pause();
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>
